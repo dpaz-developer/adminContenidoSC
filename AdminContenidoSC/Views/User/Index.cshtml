@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Registro de usuarios!!!</h2>
+
+<div ng-controller="UserController" data-ng-init="init()">
+    <form name="nuevoUsuario" ng-submit="createUser()">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <label for="exampleInputEmail1">Nombre</label>
+                            <input type="text" ng-model="name" class="form-control" placeholder="Nombre" required="" />
+                            <span class="error" ng-show="errorPass">El campo es requerido</span>
+                        </div>
+                    </div> <!-- col-lg-x-->
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" ng-model="email" class="form-control" placeholder="Email" required="" />
+                            <span class="error" ng-show="errorPass">El campo es requerido</span>
+                        </div>
+                    </div> <!-- col-lg-x-->
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <label for="exampleInputEmail1">Password</label>
+                            <input type="password" ng-model="pass" class="form-control" required="" />
+                            <span class="error" ng-show="errorPass">El campo es requerido</span>
+                        </div>
+                    </div> <!-- col-lg-x-->
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <label for="exampleInputEmail1">Tipo de usuario</label>
+                            <select ng-model="typeUser" class="form-control" required>
+                                <option value="">Selecciona un tipo de usuario</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Operador">Operador</option>
+                            </select>
+                            <span class="error" ng-show="errorCategory">La tipo de usuario es requerido</span>
+                        </div>
+                    </div>
+
+
+                </div><!-- fin del row-->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <input type="submit" class="btn btn-success btn-lg" value="Registrar" />
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- fin div panel body-->
+        </div> <!-- fin div panel-->
+    </form>
+
+
+    <!-- Este es el form del login -->
+    <form name="nuevoUsuario" ng-submit="login()">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <div class="row">
+
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" ng-model="email" class="form-control" placeholder="Email" required="" />
+                            <span class="error" ng-show="errorPass">El campo es requerido</span>
+                        </div>
+                    </div> <!-- col-lg-x-->
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <label for="exampleInputEmail1">Password</label>
+                            <input type="password" ng-model="pass" class="form-control" required="" />
+                            <span class="error" ng-show="errorPass">El campo es requerido</span>
+                        </div>
+                    </div> <!-- col-lg-x-->
+                </div><!-- fin del row-->
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group input-group-lg">
+                            <input type="submit" class="btn btn-success btn-lg" value="Entrar" />
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- fin div panel body-->
+        </div> <!-- fin div panel-->
+    </form>
+    <!-- Termina el form del login-->
+
+    <div ng-show="isCreateUser">
+
+        <br />{{userResponseData}}
+    </div>
+
+
+
+    <div ng-show="isLogin">
+
+        <br />{{userLoginResponse}}
+    </div>
+</div> <!-- Fin div controller-->
+

@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLight.cshtml";
+}
+
+
+
+    <form name="nuevoUsuario" class="form-signin" action="/User/processLogin" method="post">
+        <div class="panel panel-default">
+            <div class="panel-heading">Inicia Sesión</div>
+            <div class="panel-body">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input name="pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Recuerda mis datos
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-success btn-block" type="submit">Entrar</button>
+                <div>
+                    <h3>@ViewBag.error</h3>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
