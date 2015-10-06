@@ -20,8 +20,9 @@ namespace AdminContenidoSC.Controllers
             PictureProcessService pictureProcessService = new PictureProcessService();
             HttpFileCollectionBase Files;
             Files = Request.Files;
+            Random r = new Random(DateTime.Now.Millisecond);
 
-            Response.Write(pictureProcessService.loadPicture("test", Files));
+            Response.Write(pictureProcessService.loadPicture("test"+r.Next(1000, 9999).ToString(), Files));
         }
 
         // aqui agregamos la accion para modificar Banner
