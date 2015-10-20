@@ -3,6 +3,14 @@
 
 var module = angular.module('AdminControlSCServices', ['ngResource']);
 
+module.factory('Banners', function ($resource) {
+    var url = "/Banner/createBanner";
+    console.log("vamos a consumir nuestro servicio");
+    return $resource(url, {}, {
+        newBanner: { method: "POST", params: {}}
+    });
+});
+
 module.factory('Users', function ($resource) {
     var url = "/User/:action";  //updateUser"; //newUser
     console.log("llegamos a la invocacion con la accion" + url);

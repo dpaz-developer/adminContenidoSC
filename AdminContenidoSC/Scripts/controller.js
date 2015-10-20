@@ -1,6 +1,6 @@
 'use strict'
 
-function UserController($scope, $http, $q, $upload, Users, Login, Broadcast) {
+function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broadcast) {
 
     $scope.name     = '';
     $scope.email    = '';
@@ -119,7 +119,39 @@ function UserController($scope, $http, $q, $upload, Users, Login, Broadcast) {
 
     /*********************** FUNCIONES DE BANNER ************************************/
     
+    $scope.createBanner = function () {
+        
+        $scope.isCreateBanner = true;
+        console.log("Entramos a la funcion para crear banner");
+        $scope.bannnerResponseData = "Entramos";
 
+        //TODO = falta agregar el atributo del nombre al banner 
+
+        var params = {
+            seccionId: $scope.bnnrSection,
+            imgMainUrl: "laurldelaimagenprincipal.com",
+            imgButtonUrl: "laurldelboton.com",
+            imgModalUrl:"laurldelmodela.com",
+            mode:"modal",
+            link:"ellinkdelapromocion",
+            backgroundColor:"#CECECE",
+            text:"aqui va el texto que queremos poner en el banner",
+            registrationUserId:"2",
+            status:"active"
+        };
+        $scope.bannnerResponseData = "Ok, construimos el params";
+        
+        Banners.newBanner(params, {}, function (data) {
+            console.log("La data es correcta y es" + data);
+            $scope.bannnerResponseData = data;
+            $scope.isCreateBanner = true;
+        }, function (error) {
+            console.log("ocurrio un error" + error);
+            $scope.bannnerResponseData = "ocurrio un error" + error;
+            $scope.isCreateBanner = true;
+        });
+
+    };
     
 
     /* **** Para el tratado de la imagenes *********/
