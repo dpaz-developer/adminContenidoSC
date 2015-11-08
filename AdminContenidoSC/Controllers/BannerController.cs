@@ -33,6 +33,7 @@ namespace AdminContenidoSC.Controllers
         {
             Banner newBanner = bannerService.createBanner(
                 Request.Params["seccionId"],
+                Request.Params["name"],
                 Request.Params["imgMainUrl"],
                 Request.Params["imgButtonUrl"],
                 Request.Params["imgModalUrl"],
@@ -40,8 +41,8 @@ namespace AdminContenidoSC.Controllers
                 Request.Params["link"],
                 Request.Params["backgroundColor"],
                 Request.Params["text"],
-                new DateTime(),//(Request.Params["startDateActivation"])
-                new DateTime(), //Request.Params["endDateActivation"]
+                bannerService.processDateFormat(Request.Params["startDateActivation"]),
+                bannerService.processDateFormat(Request.Params["endDateActivation"]),
                 Request.Params["registrationUserId"],
                 Request.Params["status"]
                 );

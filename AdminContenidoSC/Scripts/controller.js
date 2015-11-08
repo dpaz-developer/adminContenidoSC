@@ -123,21 +123,26 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
         
         $scope.isCreateBanner = true;
         console.log("Entramos a la funcion para crear banner");
+        console.log("la fecha de inicion es" + $scope.bnnrDateIni);
+        console.log("la fecha de fin es" + $scope.bnnrDateEnd);
         $scope.bannnerResponseData = "Entramos";
-
+        alert("Hola desde la aplicacion" + $scope.bnnrDateIni + "..---.." + $scope.bnnrDateEnd);
         //TODO = falta agregar el atributo del nombre al banner 
 
         var params = {
             seccionId: $scope.bnnrSection,
+            name: $scope.bnnrName,
             imgMainUrl: "laurldelaimagenprincipal.com",
             imgButtonUrl: "laurldelboton.com",
             imgModalUrl:"laurldelmodela.com",
-            mode:"modal",
-            link:"ellinkdelapromocion",
-            backgroundColor:"#CECECE",
-            text:"aqui va el texto que queremos poner en el banner",
+            mode:$scope.bnnrMode,
+            link:$scope.bnnrLink,
+            backgroundColor: $scope.bnnrBackgroudColor,
+            text: $scope.bnnrText,
             registrationUserId:"2",
-            status:"active"
+            status: $scope.bnnrStatus,
+            startDateActivation: $scope.bnnrDateIni,
+            endDateActivation: $scope.bnnrDateEnd
         };
         $scope.bannnerResponseData = "Ok, construimos el params";
         

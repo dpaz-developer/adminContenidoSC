@@ -10,6 +10,7 @@ namespace AdminContenidoSC.Services
     {
         public Banner createBanner(
         string seccionId,
+        string name,
         string imgMainUrl,
         string imgButtonUrl,
         string imgModalUrl,
@@ -25,6 +26,7 @@ namespace AdminContenidoSC.Services
         {
             Banner banner = new Banner();
             banner.id = "1234";
+            banner.name = name;
             banner.seccionId = seccionId;
             banner.imgMainUrl = imgMainUrl;
             banner.imgButtonUrl = imgButtonUrl;
@@ -43,6 +45,22 @@ namespace AdminContenidoSC.Services
             return banner;
         
        
+        }
+
+
+        public DateTime processDateFormat(string fecha)
+        {
+            int anio;
+            int mes;
+            int dia;
+
+            string[] arrayFecha = fecha.Split('-');
+            anio = int.Parse(arrayFecha[0]);
+            mes = int.Parse(arrayFecha[1]);
+            dia = int.Parse(arrayFecha[2]);
+
+            DateTime dateProcess = new DateTime(anio, mes, dia);
+            return dateProcess;
         }
     }
 }

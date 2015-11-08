@@ -8,6 +8,7 @@ namespace AdminContenidoSC.Models
     public class Banner
     {
         public string id;
+        public string name;
         public string seccionId; // [slider, noticia, banner]
         public string imgMainUrl;
         public string imgButtonUrl;
