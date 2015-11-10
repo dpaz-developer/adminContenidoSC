@@ -47,6 +47,40 @@ namespace AdminContenidoSC.Services
        
         }
 
+        public Banner updateBanner(string id,
+        string name,
+        string imgMainUrl,
+        string imgButtonUrl,
+        string imgModalUrl,
+        string mode,
+        string link,
+        string backgroundColor,
+        string text,
+        DateTime startDateActivation,
+        DateTime endDateActivation,
+        string updateUserId,
+        string status)
+        {
+            Banner banner = new Banner();
+            banner.id = id;
+            banner.name = name;
+            banner.imgMainUrl = imgMainUrl;
+            banner.imgButtonUrl = imgButtonUrl;
+            banner.imgModalUrl = imgModalUrl;
+            banner.mode = mode;
+            banner.link = link;
+            banner.backgroundColor = backgroundColor;
+            banner.text = text;
+            banner.startDateActivation = startDateActivation;
+            banner.endDateActivation = endDateActivation;
+            banner.updateUserId = updateUserId;
+            banner.status = status;
+            banner.registrationDate = new DateTime();
+            banner.updateDate = new DateTime();
+
+            return banner;
+        }
+
 
         public DateTime processDateFormat(string fecha)
         {

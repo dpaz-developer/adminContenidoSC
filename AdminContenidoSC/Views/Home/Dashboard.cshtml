@@ -424,7 +424,7 @@
     </div>
 
 
-
+    <!-- Seccion para crear una campaña de banner-->
     <form name="newBanner" class="form-horizontal" ng-show="showDashNewBanner" ng-submit="createBanner();">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -549,37 +549,25 @@
     </form>
 
         
-        <form name="newBanner" class="form-horizontal" ng-show="showDashUpdBanner"><!-- edicion de banner-->
+        <form name="newBanner" class="form-horizontal" ng-show="showDashUpdBanner" ng-submit="updateBanner('321');"><!-- edicion de banner-->
             <div class="panel panel-default">
                 <div class="panel-body">
 
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Nombre:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required="" />
-                        </div>
-                    </div>
-
-                    <div class="form-group input-group-lg">
-                        <label class="col-sm-2 control-label">Sección</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" required>
-                                <option value="">Selecciona la sección</option>
-                                <option value="">A-Slider</option>
-                                <option value="">B-Banner</option>
-                                <option value="">C-Noticias</option>
-                            </select>
+                            <input type="text" ng-model="bnnrName"  class="form-control" required="" />
                         </div>
                     </div>
 
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Modalidad</label>
                         <div class="col-sm-10">
-                            <select class="form-control" required>
+                            <select class="form-control" ng-model="bnnrMode"  required>
                                 <option value="">Selecciona la modalidad</option>
-                                <option value="">Enalce</option>
-                                <option value="">Modal</option>
-                                <option value="">Otro</option>
+                                <option value="Enalce">Enalce</option>
+                                <option value="Modal">Modal</option>
+                                <option value="Otro">Otro</option>
                             </select>
                         </div>
                     </div>
@@ -608,47 +596,47 @@
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Link</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required="" />
+                            <input type="text" class="form-control" ng-model="bnnrLink" required="" />
                         </div>
                     </div>
 
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Background Color</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required="" />
+                            <input type="text" ng-model="bnnrBackgroudColor" class="form-control" required="" />
                         </div>
                     </div>
 
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Texto</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" required="" />
+                            <input type="text" ng-model="bnnrText" class="form-control" required="" />
                         </div>
                     </div>
 
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Fecha Inicial</label>
                         <div class="col-sm-10">
-                            <input type='date' class="form-control" />
+                            <input type='date' ng-model="bnnrDateIni" class="form-control" />
                         </div>
                     </div>
 
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Fecha Final</label>
                         <div class="col-sm-10">
-                            <input type='date' class="form-control" />
+                            <input type='date' ng-model="bnnrDateEnd" class="form-control" />
                         </div>
                     </div>
 
                     <div class="form-group input-group-lg">
                         <label class="col-sm-2 control-label">Status</label>
                         <div class="col-sm-10">
-                            <select class="form-control" required>
+                            <select class="form-control"  ng-model="bnnrStatus" required>
                                 <option value="">Selecciona el status</option>
-                                <option value="">Activo</option>
-                                <option value="">Inactivo</option>
-                                <option value="">Pendiente</option>
-                                <option value="">Cancelado</option>
+                                <option value="Active">Activo</option>
+                                <option value="Deactive">Inactivo</option>
+                                <option value="Pending">Pendiente</option>
+                                <option value="Canceled">Cancelado</option>
                             </select>
                         </div>
                     </div>
@@ -660,6 +648,15 @@
                             <input type="submit" class="btn btn-success btn-lg" value="Editar" />
                         </div>
                     </div>
+
+                    <div id="notificationsBanner">
+                        hola afuera
+                        <div ng-show="isCreateBanner">
+                            hola
+                            {{bannnerResponseData}}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </form>

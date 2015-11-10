@@ -4,7 +4,7 @@
 var module = angular.module('AdminControlSCServices', ['ngResource']);
 
 module.factory('Banners', function ($resource) {
-    var url = "/Banner/createBanner";
+    var url = "/Banner/:action"; //createBanner //updateBanner
     console.log("vamos a consumir nuestro servicio");
     return $resource(url, {}, {
         newBanner: { method: "POST", params: {}}

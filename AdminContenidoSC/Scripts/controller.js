@@ -30,6 +30,8 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
         $scope.saludo = "Hola desde Angula en .NET";
         $scope.isCreateUser = true;
         $scope.classMenuInicio = 'active';
+        $scope.isCreateBanner = false;
+        $scope.isUpdateBanner = false;
         //$scope.showSection;
 
     };
@@ -119,6 +121,38 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
 
     /*********************** FUNCIONES DE BANNER ************************************/
     
+    $scope.updateBanner = function (bnnrid) {
+        $scope.isCreateBanner = true;
+        $scope.bannnerResponseData = "Entramos a actualizar";
+        var params = {
+            id: bnnrid,
+            name: $scope.bnnrName,
+            imgMainUrl: "laurldelaimagenprincipalmodificada.com",
+            imgButtonUrl: "laurldelbotonmodificado.com",
+            imgModalUrl: "laurldelmodelamodificado.com",
+            mode: $scope.bnnrMode,
+            link: $scope.bnnrLink,
+            backgroundColor: $scope.bnnrBackgroudColor,
+            text: $scope.bnnrText,
+            registrationUserId: "3",
+            status: $scope.bnnrStatus,
+            startDateActivation: $scope.bnnrDateIni,
+            endDateActivation: $scope.bnnrDateEnd,
+            action: "updateBanner"
+        };
+        $scope.bannnerResponseData = "Ok, construimos el params";
+
+        Banners.newBanner(params, {}, function (data) {
+            console.log("La data es correcta y es" + data);
+            $scope.bannnerResponseData = data;
+            $scope.isCreateBanner = true;
+        }, function (error) {
+            console.log("ocurrio un error" + error);
+            $scope.bannnerResponseData = "ocurrio un error" + error;
+            $scope.isCreateBanner = true;
+        });
+    };
+
     $scope.createBanner = function () {
         
         $scope.isCreateBanner = true;
@@ -142,7 +176,8 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
             registrationUserId:"2",
             status: $scope.bnnrStatus,
             startDateActivation: $scope.bnnrDateIni,
-            endDateActivation: $scope.bnnrDateEnd
+            endDateActivation: $scope.bnnrDateEnd,
+            action: "createBanner"
         };
         $scope.bannnerResponseData = "Ok, construimos el params";
         

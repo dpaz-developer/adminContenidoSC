@@ -50,6 +50,28 @@ namespace AdminContenidoSC.Controllers
             return Json(newBanner, JsonRequestBehavior.AllowGet);
 
         }
+
+        [HttpPost]
+        public ActionResult updateBanner()
+        {
+            Banner modifiedBanner = bannerService.updateBanner(
+                Request.Params["Id"],
+                Request.Params["name"],
+                Request.Params["imgMainUrl"],
+                Request.Params["imgButtonUrl"],
+                Request.Params["imgModalUrl"],
+                Request.Params["mode"],
+                Request.Params["link"],
+                Request.Params["backgroundColor"],
+                Request.Params["text"],
+                bannerService.processDateFormat(Request.Params["startDateActivation"]),
+                bannerService.processDateFormat(Request.Params["endDateActivation"]),
+                Request.Params["registrationUserId"],
+                Request.Params["status"]
+                );
+
+            return Json(modifiedBanner, JsonRequestBehavior.AllowGet);
+        }
         // aqui agregamos la accion para modificar Banner
         // agregamos la accion para guardar Banner
         // agregamos la accion para busqueda de banner por filtro 
