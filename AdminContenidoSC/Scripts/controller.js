@@ -32,6 +32,8 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
         $scope.classMenuInicio = 'active';
         $scope.isCreateBanner = false;
         $scope.isUpdateBanner = false;
+
+        $scope.urlImageMain = "Sin procesar.. Iniciado.....";
         //$scope.showSection;
 
     };
@@ -200,6 +202,7 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
     $scope.onFileSelect = function ($files, indexPicture) {
 
         console.log("Entramos a la funcion de subida de fotografias");
+        $scope.urlImageMain = "Sin procesar..";
 
         for (var i = 0; i < $files.length; i++) {
             var $file = $files[i];
@@ -211,7 +214,9 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
             })
-            .success(function () {
+            .success(function (response) {
+                console.log("EL valor retornado es" + response);
+                $scope.urlImageMain = response;
             })
             .error(function () {
             });

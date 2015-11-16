@@ -11,7 +11,7 @@ namespace AdminContenidoSC.Services
         {
             string result = "";
             string nameFile = "sportcity-banner-" + name+".png";            
-            string dominio_raiz = "http://localhost/uploads/images/";
+            string dominio_raiz = "/uploads/images/";
             string path_raiz = "E:\\workspace\\dotNET\\AdminContenidoSC\\AdminContenidoSC\\uploads\\images\\";
             string directorio = path_raiz;
             string url = dominio_raiz + nameFile;
