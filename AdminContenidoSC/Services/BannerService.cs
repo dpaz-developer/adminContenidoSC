@@ -82,6 +82,46 @@ namespace AdminContenidoSC.Services
         }
 
 
+        public List<Banner> search(string bannerId, string sectionId, string startDateActivation,
+            string endDateActivation, string registrationUserId, string updateUserId,
+            string activationUserId, string deactivationUserId, string status)
+        {
+            List<Banner> banners = new List<Banner>();
+            banners.Clear();
+
+            // TODO hacer la conexion a la BD
+            if (bannerId == null)
+            {
+                bannerId = "0";
+            }
+            Banner banner = new Banner();
+
+            for (int i = 0; i < int.Parse(bannerId); i++)
+            {
+                banner.id = "B"+i.ToString();
+                banner.name = "Banner de test";
+                banner.imgMainUrl = "/uploads/images/A-slider/sportcity-banner-test3088.png";
+                banner.imgButtonUrl = "/uploads/images/A-slider/sportcity-banner-test2946.png";
+                banner.imgModalUrl = "/uploads/images/A-slider/sportcity-banner-test8949.png";
+                banner.mode = "slider";
+                banner.link = "sin_link";
+                banner.backgroundColor = "#FEFEFE";
+                banner.text = "sin_texto";
+                banner.startDateActivation = new DateTime().AddDays(3);
+                banner.endDateActivation = new DateTime().AddDays(15);
+                banner.updateUserId = "1";
+                banner.status = "pending";
+                banner.registrationDate = new DateTime();
+                banner.updateDate = new DateTime();
+
+                banners.Add(banner);
+            }
+
+
+            return banners;
+        }
+
+
         public DateTime processDateFormat(string fecha)
         {
             int anio;

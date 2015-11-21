@@ -73,13 +73,20 @@ namespace AdminContenidoSC.Controllers
 
             return Json(modifiedBanner, JsonRequestBehavior.AllowGet);
         }
-        // aqui agregamos la accion para modificar Banner
-        // agregamos la accion para guardar Banner
-        // agregamos la accion para busqueda de banner por filtro 
-        public void SearchBanner()
+
+        [HttpGet]
+        public ActionResult SearchBanner(string bannerId, string sectionId, string startDateActivation,
+            string endDateActivation, string registrationUserId, string updateUserId,
+            string activationUserId, string deactivationUserId, string status)
         {
-            // fitros, por id, por status, por sección, fechaInicial, fechaTerminacion, 
-            Response.Write("OK");
+            List<Banner> results = new List<Banner>();
+            results.Clear();
+
+            results = bannerService.search(bannerId, sectionId, startDateActivation, endDateActivation,
+                registrationUserId, updateUserId, activationUserId, deactivationUserId, status);
+
+            return Json(results, JsonRequestBehavior.AllowGet);
+
         }
         // agregamos la accion para preview
     }
