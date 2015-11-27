@@ -10,6 +10,10 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
     $scope.isCreateUser = true;
     $scope.isLogin = true;
     $scope.userResponseData = "no se hizo la llamda";
+    $scope.urlPic = [];
+    $scope.urlPic[0] = "";
+    $scope.urlPic[1] = "";
+    $scope.urlPic[2] = "";
 
 
     $scope.showDashHome         = true;
@@ -168,9 +172,9 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
         var params = {
             seccionId: $scope.bnnrSection,
             name: $scope.bnnrName,
-            imgMainUrl: "laurldelaimagenprincipal.com",
-            imgButtonUrl: "laurldelboton.com",
-            imgModalUrl:"laurldelmodela.com",
+            imgMainUrl: $scope.urlPic[0],
+            imgButtonUrl: $scope.urlPic[1],
+            imgModalUrl:$scope.urlPic[2],
             mode:$scope.bnnrMode,
             link:$scope.bnnrLink,
             backgroundColor: $scope.bnnrBackgroudColor,
@@ -210,13 +214,14 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
 
             var fd = new FormData();
             fd.append('file', $file);
-            $http.post('/Banner/LoadPicture', fd, {
+            $http.post('/Banner/LoadPicture?sectionName=' + $scope.bnnrSection, fd, {
                 transformRequest: angular.identity,
                 headers: { 'Content-Type': undefined }
             })
             .success(function (response) {
                 console.log("EL valor retornado es" + response);
                 $scope.urlImageMain = response;
+                $scope.urlPic[indexPicture] = response;
             })
             .error(function () {
             });

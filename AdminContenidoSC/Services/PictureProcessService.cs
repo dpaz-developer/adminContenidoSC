@@ -7,12 +7,12 @@ namespace AdminContenidoSC.Services
 {
     public class PictureProcessService
     {
-        public string loadPicture(string name, HttpFileCollectionBase FileCollection)
+        public string loadPicture(string sectionName,string name, HttpFileCollectionBase FileCollection)
         {
             string result = "";
             string nameFile = "sportcity-banner-" + name+".png";            
-            string dominio_raiz = "/uploads/images/";
-            string path_raiz = "E:\\workspace\\dotNET\\AdminContenidoSC\\AdminContenidoSC\\uploads\\images\\";
+            string dominio_raiz = "/uploads/images/"+ sectionName+"/";
+            string path_raiz = "E:\\workspace\\dotNET\\AdminContenidoSC\\AdminContenidoSC\\uploads\\images\\"+ sectionName+"\\";
             string directorio = path_raiz;
             string url = dominio_raiz + nameFile;
 

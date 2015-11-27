@@ -189,6 +189,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\loading_picture.gif" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\pic_upload.png" />
     <Content Include="Scripts\angular-file-upload-shim.js" />
     <Content Include="Scripts\angular-file-upload.js" />
     <Content Include="Scripts\angular-resource.min.js" />
@@ -229,7 +232,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="uploads\images\" />
+    <Folder Include="uploads\images\A-Slider\" />
+    <Folder Include="uploads\images\B-Banner\" />
+    <Folder Include="uploads\images\C-Noticias\" />
     <Folder Include="Views\Banner\" />
   </ItemGroup>
   <ItemGroup>

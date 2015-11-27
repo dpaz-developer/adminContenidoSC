@@ -363,6 +363,7 @@ img {
 
 .img-rounded {
   border-radius: 6px;
+  width: 200px;
 }
 
 .img-thumbnail {
@@ -4291,6 +4292,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
   .navbar-right {
     float: right !important;
+    margin-right: 100px !important;
   }
 }
 
@@ -4501,8 +4503,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: #002552;
+  border-color: #002552;
 }
 
 .navbar-inverse .navbar-brand {

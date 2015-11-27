@@ -23,9 +23,10 @@ namespace AdminContenidoSC.Controllers
             PictureProcessService pictureProcessService = new PictureProcessService();
             HttpFileCollectionBase Files;
             Files = Request.Files;
+            String sectionName = Request.Params["sectionName"];
             Random r = new Random(DateTime.Now.Millisecond);
 
-            Response.Write(pictureProcessService.loadPicture("test"+r.Next(1000, 9999).ToString(), Files));
+            Response.Write(pictureProcessService.loadPicture(sectionName,"test"+r.Next(1000, 9999).ToString(), Files));
         }
 
         [HttpPost]
