@@ -1,5 +1,7 @@
 ﻿using AdminContenidoSC.Models;
 using AdminContenidoSC.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,7 +77,7 @@ namespace AdminContenidoSC.Controllers
         }
 
         [HttpGet]
-        public ActionResult SearchBanner(string bannerId, string sectionId, string startDateActivation,
+        public void SearchBanner(string bannerId, string sectionId, string startDateActivation,
             string endDateActivation, string registrationUserId, string updateUserId,
             string activationUserId, string deactivationUserId, string status)
         {
@@ -85,7 +87,8 @@ namespace AdminContenidoSC.Controllers
             results = bannerService.search(bannerId, sectionId, startDateActivation, endDateActivation,
                 registrationUserId, updateUserId, activationUserId, deactivationUserId, status);
 
-            return Json(results, JsonRequestBehavior.AllowGet);
+            //return Json(results, JsonRequestBehavior.AllowGet);
+            Response.Write(JsonConvert.SerializeObject(results, new IsoDateTimeConverter()));
 
         }
         // agregamos la accion para preview

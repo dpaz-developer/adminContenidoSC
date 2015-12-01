@@ -39,8 +39,8 @@ namespace AdminContenidoSC.Services
             banner.endDateActivation = endDateActivation;
             banner.registrationUserId = registrationUserId;
             banner.status = status;
-            banner.registrationDate = new DateTime();
-            banner.updateDate = new DateTime();
+            banner.registrationDate = DateTime.Now;
+            banner.updateDate = DateTime.Now;
 
             return banner;
         
@@ -75,8 +75,8 @@ namespace AdminContenidoSC.Services
             banner.endDateActivation = endDateActivation;
             banner.updateUserId = updateUserId;
             banner.status = status;
-            banner.registrationDate = new DateTime();
-            banner.updateDate = new DateTime();
+            banner.registrationDate = DateTime.Now;
+            banner.updateDate = DateTime.Now;
 
             return banner;
         }
@@ -108,12 +108,12 @@ namespace AdminContenidoSC.Services
                 banner.link = "sin_link";
                 banner.backgroundColor = "#FEFEFE";
                 banner.text = "sin_texto";
-                banner.startDateActivation = new DateTime().AddDays(3);
-                banner.endDateActivation = new DateTime().AddDays(15);
+                banner.startDateActivation = DateTime.Now.AddDays(3);
+                banner.endDateActivation = DateTime.Now.AddDays(15);
                 banner.updateUserId = "1";
                 banner.status = "pending";
-                banner.registrationDate = new DateTime();
-                banner.updateDate = new DateTime();
+                banner.registrationDate = DateTime.Now;
+                banner.updateDate = DateTime.Now;
                 banner.registrationUserId = "1";
                 banner.activationUserId = "1";
                 banner.deactivationUserId = "1";
