@@ -26,6 +26,7 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
     $scope.showDashUpdBanner        = false;
     $scope.showDashPreviewBanner    = false;
     
+    $scope.bannersResult = [];
 
 
 
@@ -195,6 +196,24 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
             console.log("ocurrio un error" + error);
             $scope.bannnerResponseData = "ocurrio un error" + error;
             $scope.isCreateBanner = true;
+        });
+
+    };
+
+    $scope.srchBnnr = function (bnnrId) {
+
+        console.log("entramos.... a buscar los banners");
+        var params = {
+            bannerId: bnnrId,
+            action: "searchBanner"
+        };
+
+        Banners.searchBanner(params,{}, function (data) {
+            console.log("si entro y la data es" + data);
+            $scope.bannersResult = data;
+        }, function (error) {
+            console.log("no entro y el error es" + error);
+            $scope.bannersResult = error;
         });
 
     };

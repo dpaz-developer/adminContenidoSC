@@ -7,7 +7,8 @@ module.factory('Banners', function ($resource) {
     var url = "/Banner/:action"; //createBanner //updateBanner
     console.log("vamos a consumir nuestro servicio");
     return $resource(url, {}, {
-        newBanner: { method: "POST", params: {}}
+        newBanner: { method: "POST", params: {} },
+        searchBanner: { method: "GET", params: {}, isArray: true}
     });
 });
 
@@ -27,6 +28,7 @@ module.factory("Login", function ($resource) {
         post: { method: "POST", params: { email: "test@test.com.mx", pass: "1234" } }
     });
 });
+
 
 module.factory('Broadcast', function ($rootScope) {
     var broadcastService = {

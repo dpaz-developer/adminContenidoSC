@@ -99,6 +99,7 @@ namespace AdminContenidoSC.Services
             for (int i = 0; i < int.Parse(bannerId); i++)
             {
                 banner.id = "B"+i.ToString();
+                banner.seccionId = "A-Slider";
                 banner.name = "Banner de test";
                 banner.imgMainUrl = "/uploads/images/A-slider/sportcity-banner-test3088.png";
                 banner.imgButtonUrl = "/uploads/images/A-slider/sportcity-banner-test2946.png";
@@ -113,6 +114,9 @@ namespace AdminContenidoSC.Services
                 banner.status = "pending";
                 banner.registrationDate = new DateTime();
                 banner.updateDate = new DateTime();
+                banner.registrationUserId = "1";
+                banner.activationUserId = "1";
+                banner.deactivationUserId = "1";
 
                 banners.Add(banner);
             }

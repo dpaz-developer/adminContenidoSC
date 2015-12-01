@@ -259,7 +259,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" ng-click="showSection('searchBanner');" >Buscar</button>
+                            <button type="submit" class="btn btn-success" ng-click="showSection('searchBanner'); srchBnnr(3);" >Buscar</button>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" ng-click="showSection('newBanner');" >Nuevo</button>
@@ -293,6 +293,7 @@
                             </a>
                         </li>
                     </ul>
+                    --{{bannersResul}}
                 </nav>
 
                 <div class="table-responsive">
@@ -307,23 +308,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr  ng-repeat="bnner in bannersResult">
                                 <td>
                                     <input type="checkbox" name="" value="1" /> 1<br />
                                     <a href="#" ng-click="showSection('updBanner');" >
-                                        <img src="~/uploads/images/sportcity-banner-test.png" height="60px" width="80px" />
+                                        <img src="{{bnner.imgMainUrl}}" height="60px" width="80px" />
                                     </a>
                                 </td>
                                 <td>
-                                    Seccion <br />
-                                    Tipo
+                                    {{bnner.seccionId}} <br />
+                                    {{bnner.mode}}
                                 </td>
-                                <td>Activo</td>
+                                <td>{{bnner.status}}</td>
                                 <td>
-                                    ini:10/09/2015<br />
-                                    fin:10/10/2015<br />
-                                    modificado:20/09/2015<br />
-                                    carga:09/09/2015
+                                    ini:{{bnner.startDateActivation  | date: "yyyy-MM-dd"}}<br />
+                                    fin:{{bnner.endDateActivation}}<br />
+                                    modificado:{{bnner.updateDate}}<br />
+                                    carga:{{bnner.registrationDate}}
                                 </td>
                                 <td>
                                     <a href="">Activar</a><br />
@@ -331,52 +332,6 @@
                                     <a href="">Cancelar</a><br />
                                     <a href="#" ng-click="showSection('previewBanner');">Preview</a><br />
                                     
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="" value="1" /> 1<br />
-                                    <img src="~/uploads/images/sportcity-banner-test.png" height="60px" width="80px" />
-                                </td>
-                                <td>
-                                    Seccion <br />
-                                    Tipo
-                                </td>
-                                <td>Activo</td>
-                                <td>
-                                    ini:10/09/2015<br />
-                                    fin:10/10/2015<br />
-                                    modificado:20/09/2015<br />
-                                    carga:09/09/2015
-                                </td>
-                                <td>
-                                    <a href="">Activar</a><br />
-                                    <a href="">Poner pendiente</a><br />
-                                    <a href="">Cancelar</a><br />
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="" value="1" /> 1<br />
-                                    <img src="~/uploads/images/sportcity-banner-test.png" height="60px" width="80px" />
-                                </td>
-                                <td>
-                                    Seccion <br />
-                                    Tipo
-                                </td>
-                                <td>Activo</td>
-                                <td>
-                                    ini:10/09/2015<br />
-                                    fin:10/10/2015<br />
-                                    modificado:20/09/2015<br />
-                                    carga:09/09/2015
-                                </td>
-                                <td>
-                                    <a href="">Activar</a><br />
-                                    <a href="">Poner pendiente</a><br />
-                                    <a href="">Cancelar</a><br />
                                 </td>
                             </tr>
 
