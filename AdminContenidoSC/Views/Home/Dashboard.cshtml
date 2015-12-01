@@ -12,6 +12,34 @@
             <h2>Aquí manejamos las opciones del home</h2>
         </div>
     </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div>
+                <button type="submit"  class="btn btn-success">Preview activo home</button>
+                <button type="submit" class="btn btn-success">Preview activo promociones</button>
+                <button type="submit"  class="btn btn-success">Status de procesos</button>
+
+                <button type="submit" class="btn btn-warning">activar en sitio</button>
+                <button type="submit" class="btn btn-warning">regresar a la version anterior</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div>
+                <h2>Aqui va el preview del home</h2>
+                <div>
+                    slider
+                </div>
+                <div>
+                    noticias
+                </div>
+                <div>
+                    banners
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Termina el div del home del dashboard-->
 
@@ -228,30 +256,31 @@
 
                         <div class="form-group">
                             <label class="sr-only" for="banner_id">Id</label>
-                            <input type="text" id="banner_id" class="form-control"  placeholder="Buscar por id" />
+                            <input type="text" ng-model="searchBannerId" id="banner_id" class="form-control"  placeholder="Buscar por id" />
                         </div>
 
                         <div class="form-group">
-                            <select class="form-control">
+                            <select class="form-control" ng-model="searchBannerStatus">
                                 <option value="">Por status</option>
-                                <option value="">Activo</option>
-                                <option value="">Inactivo</option>
-                                <option value="">Pendiente</option>
-                                <option value="">Cancelado</option>
+                                <option value="active">Activo</option>
+                                <option value="deactive">Inactivo</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="cancel">Cancelado</option>
+                                <option value="close">Cerrado</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <select class="form-control">
+                            <select class="form-control" ng-model="searchBannerSectionId">
                                 <option value="">Por sección</option>
-                                <option value="">A-Slider</option>
-                                <option value="">B-Banner</option>
-                                <option value="">C-Noticias</option>
+                                <option value="A-Slider">A-Slider</option>
+                                <option value="B-Banner">B-Banner</option>
+                                <option value="C-Noticias">C-Noticias</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <select class="form-control">
+                            <select class="form-control" ng-model="searchBannerMode">
                                 <option value="">Por modalidad</option>
                                 <option value="">Enalce</option>
                                 <option value="">Modal</option>
@@ -259,7 +288,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success" ng-click="showSection('searchBanner'); srchBnnr(3);" >Buscar</button>
+                            <button type="submit" class="btn btn-success" ng-click="showSection('searchBanner'); srchBnnr();" >Buscar</button>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" ng-click="showSection('newBanner');" >Nuevo</button>
@@ -310,7 +339,7 @@
                         <tbody>
                             <tr  ng-repeat="bnner in bannersResult">
                                 <td>
-                                    <input type="checkbox" name="" value="1" /> 1<br />
+                                    <input type="checkbox" name="" value="{{bnner.id}}" /> {{bnner.id}}<br />
                                     <a href="#" ng-click="showSection('updBanner');" >
                                         <img src="{{bnner.imgMainUrl}}" height="60px" width="80px" />
                                     </a>
@@ -365,7 +394,7 @@
 
 
     <!-- Seccion para crear una campaña de banner-->
-    <form name="newBanner" class="form-horizontal" ng-show="showDashNewBanner" ng-submit="createBanner();">
+    <form name="newBanner" class="form-horizontal" ng-show="showDashNewBanner" ng-submit="createBanner();srchBnnr();showSection('searchBanner'); ">
         <div class="panel panel-default">
             <div class="panel-body">
 

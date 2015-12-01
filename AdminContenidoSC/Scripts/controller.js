@@ -200,11 +200,29 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
 
     };
 
-    $scope.srchBnnr = function (bnnrId) {
+    $scope.srchBnnr = function () {
+        var bannerId;
+        var status;
+        var section;
+        bannerId = $scope.searchBannerId;
+        status = $scope.searchBannerStatus;
+        section = $scope.searchBannerSectionId;
+        if (!$scope.searchBannerId) {
+            bannerId = "0";
+        } 
+        if (!$scope.searchBannerStatus) {
+            status = "";
+        }
+        if (!$scope.searchBannerSectionId) {
+            section = "";
+        }
 
-        console.log("entramos.... a buscar los banners");
         var params = {
-            bannerId: bnnrId,
+            bannerId: bannerId,
+            status: status,
+            sectionId: section,
+            offset:0,
+            resultForPage:5,
             action: "searchBanner"
         };
 
@@ -218,7 +236,6 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
 
     };
     
-
     /* **** Para el tratado de la imagenes *********/
 
 

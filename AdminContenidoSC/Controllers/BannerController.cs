@@ -32,7 +32,7 @@ namespace AdminContenidoSC.Controllers
         }
 
         [HttpPost]
-        public ActionResult createBanner()
+        public void createBanner()
         {
             Banner newBanner = bannerService.createBanner(
                 Request.Params["seccionId"],
@@ -50,12 +50,12 @@ namespace AdminContenidoSC.Controllers
                 Request.Params["status"]
                 );
 
-            return Json(newBanner, JsonRequestBehavior.AllowGet);
+            Response.Write(JsonConvert.SerializeObject(newBanner, new IsoDateTimeConverter()));
 
         }
 
         [HttpPost]
-        public ActionResult updateBanner()
+        public void updateBanner()
         {
             Banner modifiedBanner = bannerService.updateBanner(
                 Request.Params["Id"],
@@ -73,19 +73,19 @@ namespace AdminContenidoSC.Controllers
                 Request.Params["status"]
                 );
 
-            return Json(modifiedBanner, JsonRequestBehavior.AllowGet);
+            Response.Write(JsonConvert.SerializeObject(modifiedBanner, new IsoDateTimeConverter()));
         }
 
         [HttpGet]
         public void SearchBanner(string bannerId, string sectionId, string startDateActivation,
             string endDateActivation, string registrationUserId, string updateUserId,
-            string activationUserId, string deactivationUserId, string status)
+            string activationUserId, string deactivationUserId, string status, int offset, int resultForPage)
         {
             List<Banner> results = new List<Banner>();
             results.Clear();
 
             results = bannerService.search(bannerId, sectionId, startDateActivation, endDateActivation,
-                registrationUserId, updateUserId, activationUserId, deactivationUserId, status);
+                registrationUserId, updateUserId, activationUserId, deactivationUserId, status, offset, resultForPage);
 
             //return Json(results, JsonRequestBehavior.AllowGet);
             Response.Write(JsonConvert.SerializeObject(results, new IsoDateTimeConverter()));
