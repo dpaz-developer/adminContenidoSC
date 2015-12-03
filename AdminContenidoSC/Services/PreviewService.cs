@@ -42,6 +42,45 @@ namespace AdminContenidoSC.Services
             return response;
         }
 
+        public string buildBannerSection()
+        {
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sbScript = new StringBuilder();
+            sb.Clear();
+
+            if (bannerBannerList.Count() > 0)
+            {
+                sbScript.Clear();
+                sbScript.Append("<script>");
+                sbScript.Append(" $(document).ready(function() {");
+            }
+            
+
+            foreach (Banner banners in bannerBannerList)
+            {
+                sb.Append("<li>");
+                sb.Append("    <div class=\"bannerEstatico" + banners.id + " bannerEstaticoGeneral\" style=\"background: transparent url("+banners.imgModalUrl+") repeat top left; \">");
+                sb.Append("        <div class=\"bannerEstaticoCentro\">");
+                sb.Append("            <img src=\"" + banners.imgMainUrl + "\" alt=\"\" /></a>");
+                sb.Append("        </div>");
+                sb.Append("    </div>");
+                sb.Append("</li>");
+
+                sbScript.Append("$('.bannerEstatico" + banners.id + "').click(function(){");
+                sbScript.Append("        window.open(\"" + banners.link + "\", '_blank');");
+                sbScript.Append("    });");
+            }
+
+            if (bannerBannerList.Count() > 0)
+            {
+                sbScript.Append("});");
+                sbScript.Append("</script>");
+            }
+
+            return sb.ToString()+sbScript.ToString();
+
+        }
+
         public string buildNewsSectionA()
         {
 

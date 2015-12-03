@@ -139,6 +139,17 @@
             margin-top: -600px;
             display: none;
         }
+
+        .bannerEstaticoGeneral { 
+        width:100%; height:auto;  
+        margin:0px 0px 100px 0;    
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: none;
+        background-position:left top;
+        cursor: pointer;
+        }
+
     </style>
 
 
@@ -198,12 +209,6 @@
                     </div>
                 </div>
             </li>
-            <!--<li><div class="bannerEstatico2">
-                    <div class="bannerEstaticoCentro">
-                        <img src="images/slider300px/JD5.png" alt=""/></a>
-                    </div>
-                </div>
-            </li>-->
 
             <li>
                 <div class="bannerEstatico3">
@@ -213,9 +218,13 @@
                 </div>
             </li>
 
+            @Html.Raw(ViewBag.banners)
+
         </ul>
     </div>
     <!--Termina banners-->
+
+
 
 </body>
 </html>

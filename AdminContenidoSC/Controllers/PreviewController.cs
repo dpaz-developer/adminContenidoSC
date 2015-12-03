@@ -17,6 +17,7 @@ namespace AdminContenidoSC.Controllers
             ViewBag.takeOver = previewService.buildTakeOver();
             ViewBag.newsA = previewService.buildNewsSectionA();
             ViewBag.newsB = previewService.buildNewsSectionB();
+            ViewBag.banners = previewService.buildBannerSection();
             return View();
         }
     }
