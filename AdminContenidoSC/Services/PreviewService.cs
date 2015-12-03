@@ -19,12 +19,19 @@ namespace AdminContenidoSC.Services
         */
         private DataBase conexion = new DataBase("SQL");
         private List<Banner> bannerSliderList = new List<Banner>();
-        private List<Banner> bannerNewsList = new List<Banner>();
+        private List<Banner> bannerNewsListA = new List<Banner>();
+        private List<Banner> bannerNewsListB = new List<Banner>();
+        private List<Banner> bannerNewsListC = new List<Banner>();
         private List<Banner> bannerBannerList = new List<Banner>();
         private List<Banner> bannerTakeoverList = new List<Banner>();
+        private List<Banner> bannerOtherList = new List<Banner>();
+
         private string CLASSIFICATION_A_SLIDER = "A-Slider";
         private string CLASSIFICATION_B_BANNER = "B-Banner";
-        private string CLASSIFICATION_C_NOTICIAS = "A-Noticias";
+        private string CLASSIFICATION_C_NOTICIAS_A = "C-Noticias-A";
+        private string CLASSIFICATION_C_NOTICIAS_B = "C-Noticias-B";
+        private string CLASSIFICATION_C_NOTICIAS_C = "C-Noticias-C";
+        private string CLASSIFICATION_D_TAKEOVER = "D-Takeover";
 
         public string buildHome()
         {
@@ -34,6 +41,7 @@ namespace AdminContenidoSC.Services
             string response = buildSliderSection();
             return response;
         }
+
 
         public string buildTakeOver()
         {
@@ -69,16 +77,7 @@ namespace AdminContenidoSC.Services
             {
                 if (modals.mode.ToLower() == "modal" || modals.mode.ToLower() == "slider")
                 {
-                    sb.Append("<div id=\"modalPromo" +modals.id+ "\" class=\"modalmask\">");
-                    sb.Append("    <div class=\"modalbox14 movedown\">");
-                    sb.Append("        <a href = \"#close\" title=\"Close\" class=\"close\">x</a>");
-                    sb.Append("        <div id = \"container-modal\">");
-                    sb.Append("            <div class=\"contenido-modal\">");
-                    sb.Append("                <img src = \""+modals.imgModalUrl+"\" >");
-                    sb.Append("            </div>");
-                    sb.Append("        </div>");
-                    sb.Append("    </div>");
-                    sb.Append("</div>");
+                    sb.Append(buildModal(modals.id, modals.imgModalUrl));
                 }
 
             }
@@ -86,36 +85,35 @@ namespace AdminContenidoSC.Services
             {
                 if (modals.mode.ToLower() == "modal" || modals.mode.ToLower() == "slider")
                 {
-                    sb.Append("<div id=\"modalPromo" + modals.id + "\" class=\"modalmask\">");
-                    sb.Append("    <div class=\"modalbox14 movedown\">");
-                    sb.Append("        <a href = \"#close\" title=\"Close\" class=\"close\">x</a>");
-                    sb.Append("        <div id = \"container-modal\">");
-                    sb.Append("            <div class=\"contenido-modal\">");
-                    sb.Append("                <img src = \"" + modals.imgModalUrl + "\" >");
-                    sb.Append("            </div>");
-                    sb.Append("        </div>");
-                    sb.Append("    </div>");
-                    sb.Append("</div>");
+                    sb.Append(buildModal(modals.id, modals.imgModalUrl));
                 }
 
             }
-            foreach (Banner modals in bannerNewsList)
+            foreach (Banner modals in bannerNewsListA)
             {
                 if (modals.mode.ToLower() == "modal" || modals.mode.ToLower() == "slider")
                 {
-                    sb.Append("<div id=\"modalPromo" + modals.id + "\" class=\"modalmask\">");
-                    sb.Append("    <div class=\"modalbox14 movedown\">");
-                    sb.Append("        <a href = \"#close\" title=\"Close\" class=\"close\">x</a>");
-                    sb.Append("        <div id = \"container-modal\">");
-                    sb.Append("            <div class=\"contenido-modal\">");
-                    sb.Append("                <img src = \"" + modals.imgModalUrl + "\" >");
-                    sb.Append("            </div>");
-                    sb.Append("        </div>");
-                    sb.Append("    </div>");
-                    sb.Append("</div>");
+                    sb.Append(buildModal(modals.id, modals.imgModalUrl));
                 }
 
             }
+            foreach (Banner modals in bannerNewsListB)
+            {
+                if (modals.mode.ToLower() == "modal" || modals.mode.ToLower() == "slider")
+                {
+                    sb.Append(buildModal(modals.id, modals.imgModalUrl));
+                }
+
+            }
+            foreach (Banner modals in bannerNewsListC)
+            {
+                if (modals.mode.ToLower() == "modal" || modals.mode.ToLower() == "slider")
+                {
+                    sb.Append(buildModal(modals.id, modals.imgModalUrl));
+                }
+
+            }
+
             response = sb.ToString();
             return response;
 
@@ -153,12 +151,36 @@ namespace AdminContenidoSC.Services
             return response;
         }
 
+        private string buildModal(string id, string urlImage)
+        {
+            string modalResponse = "";
+            StringBuilder modalSb = new StringBuilder();
+
+            modalSb.Clear();
+            modalSb.Append("<div id=\"modalPromo" + id + "\" class=\"modalmask\">");
+            modalSb.Append("    <div class=\"modalbox14 movedown\">");
+            modalSb.Append("        <a href = \"#close\" title=\"Close\" class=\"close\">x</a>");
+            modalSb.Append("        <div id = \"container-modal\">");
+            modalSb.Append("            <div class=\"contenido-modal\">");
+            modalSb.Append("                <img src = \"" + urlImage + "\" >");
+            modalSb.Append("            </div>");
+            modalSb.Append("        </div>");
+            modalSb.Append("    </div>");
+            modalSb.Append("</div>");
+
+            modalResponse = modalSb.ToString();
+            return modalResponse;
+        }
+
         private void clearBannerList()
         {
             this.bannerSliderList.Clear();
-            this.bannerNewsList.Clear();
+            this.bannerNewsListA.Clear();
+            this.bannerNewsListB.Clear();
+            this.bannerNewsListC.Clear();
             this.bannerBannerList.Clear();
             this.bannerTakeoverList.Clear();
+            this.bannerOtherList.Clear();
         }
 
         private void getBannerActive()
@@ -204,11 +226,20 @@ namespace AdminContenidoSC.Services
                         case "B-Banner":
                             bannerBannerList.Add(banner);
                             break;
+                        case "C-Noticias-A":
+                            bannerNewsListA.Add(banner);
+                            break;
+                        case "C-Noticias-B":
+                            bannerNewsListB.Add(banner);
+                            break;
+                        case "C-Noticias-C":
+                            bannerNewsListC.Add(banner);
+                            break;
                         case "D-Takeover":
                             bannerTakeoverList.Add(banner);
                             break;
                         default:
-                            bannerNewsList.Add(banner);
+                            bannerOtherList.Add(banner);
                             break;
                     }
 
