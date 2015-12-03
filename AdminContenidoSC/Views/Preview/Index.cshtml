@@ -30,42 +30,137 @@
 
     <script src="https://www.sportcity.com.mx/scripts/jquery.cookie.js"></script>
     <script src="https://www.sportcity.com.mx/scripts/jquery.popupoverlay.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+
+
+         $('#takeOver').popup({
+          opacity: 0.8,
+          transition: 'all 0.3s',
+          vertical: 'top'
+        });
+
+
+         function abrir(){
+
+        setTimeout(function() {
+          $('#takeOver').popup('show');
+          $('.img1').css("display","block");
+          $('.img2').css("display","block");
+          TweenMax.from('.img1', 2, {opacity:0, scale:0, ease: Elastic.easeInOut});
+          TweenMax.to('.img1', 2, {opacity:0, scale:0, delay:5, ease: Back.easeOut.config(1), y: 0});
+
+          TweenMax.from('.img2', 2, {opacity:0, scale:0, ease: Elastic.easeInOut, delay:5});
+          TweenMax.to('.img2', 2, {opacity:0, scale:0, delay:12, ease: Back.easeOut.config(1), y: 0});
+
+        }, 5000);
+
+        }
+
+        function cerrarPop(){
+        setTimeout(function() {
+          $('#takeOver').popup('hide');
+        }, 19000);
+
+
+        }
+
+          // check cookie
+                var visited = $.cookie("Takeover")
+
+               // if (visited == null) {
+                    // $.cookie('Takeover', 'Activo');
+                    abrir();
+                    cerrarPop();
+               // }
+
+                // set cookie
+
+            //var date = new Date();
+            //var minutes = 1440;
+            //date.setTime(date.getTime() + (minutes * 60 * 1000));
+            //$.cookie('Takeover', 'Activo', { expires: date, path: '/', domain: 'sportcity.com.mx' });
+            
+
+        });
+
+    </script>
+    <!--takeOver-->
+
+    <style>
+        .closeM {
+            background: #656565;
+            color: #FFF;
+            line-height: 40px;
+            position: absolute;
+            right: 1px;
+            text-align: center;
+            top: 1px;
+            width: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+            .closeM:hover {
+                color: #fff;
+                background-color: #3a3a3a;
+            }
+
+
+
+
+        #imagen1 {
+            position: absolute;
+        }
+
+        #imagen2 {
+            position: absolute;
+        }
+
+        .take {
+            width: 827px;
+            height: 723px;
+        }
+
+
+        .img1 {
+            margin: 0 auto;
+            text-align: center;
+            display: none;
+        }
+
+
+        .img2 {
+            margin-top: -600px;
+            display: none;
+        }
+    </style>
+
+
 
 </head>
 <body>
+
+    <!-- inicia el takeover-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenMax.min.js"></script>
+
+
+    @Html.Raw(ViewBag.takeOver)
+
+    
+    <!-- termina el takeover -->
     <!-- estos son los modals-->
 
-    <div id="modalPromo8" class="modalmask">
-        <div class="modalbox14 movedown">
-            <a href="#close" title="Close" class="close">x</a>
-            <div id="container-modal">
-                <div class="contenido-modal">
-                    <img src="https://www.sportcity.com.mx/images/modal_slider_diciembre_2015.jpg">
-                </div>
-            </div>
-        </div>
-    </div>
-
+    @Html.Raw(ViewBag.modals)
 
     <!-- fin de los modals-->
     <!-- slider -->
-    <ul class="bxslider1">
-        <li>
-            <div class="content_promo2" style="background:#7eb3db">
-                <div class="content_promoCentro2">
-                    <div class="anuncio" style="background:#7eb3db">
-                        <div id="imagenAnuncio">
-                            <img src="https://www.sportcity.com.mx/images/banner_slider_diciembre_2015.jpg" height="250" width="1920">
-                        </div>
-                        <div id="botonAnuncio">
-                            <a href="#modalPromo8"><img src="https://www.sportcity.com.mx/images/button_slider_diciembre_2015.png" width="70%" height="70%"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-
+    @Html.Raw(ViewBag.contenido)
     <!-- Termina slider-->
 
     <!-- Noticias -->

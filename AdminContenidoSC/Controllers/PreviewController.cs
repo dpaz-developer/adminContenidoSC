@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminContenidoSC.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,12 @@ namespace AdminContenidoSC.Controllers
 {
     public class PreviewController : Controller
     {
-        // GET: Preview
+        PreviewService previewService = new PreviewService();
         public ActionResult Index()
         {
+            ViewBag.contenido = previewService.buildHome();
+            ViewBag.modals = previewService.buildModals();
+            ViewBag.takeOver = previewService.buildTakeOver();
             return View();
         }
     }

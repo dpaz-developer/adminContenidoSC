@@ -179,6 +179,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BannerService.cs" />
     <Compile Include="Services\PictureProcessService.cs" />
+    <Compile Include="Services\PreviewService.cs" />
     <Compile Include="Services\SessionService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
@@ -237,6 +238,7 @@
     <Folder Include="uploads\images\A-Slider\" />
     <Folder Include="uploads\images\B-Banner\" />
     <Folder Include="uploads\images\C-Noticias\" />
+    <Folder Include="uploads\images\D-Takeover\" />
     <Folder Include="Views\Banner\" />
   </ItemGroup>
   <ItemGroup>
