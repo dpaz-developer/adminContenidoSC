@@ -42,10 +42,50 @@ namespace AdminContenidoSC.Services
             return response;
         }
 
+        public string buildNewsSectionA()
+        {
+
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+
+            if (bannerNewsListA.Count > 0) // solo podemos tener un elemento por vez
+            {
+                sb.Append("<div class=\"view view-first\">");
+                sb.Append("    <ul class=\"bxslider1\">");
+                sb.Append("        <li>");
+                sb.Append("            <div class=\"textosNoticias\">"+bannerNewsListA[0].text+"</div>");
+                sb.Append("            <img src=\""+bannerNewsListA[0].imgMainUrl+"\" />");
+                sb.Append("            <div class=\"mask\">");
+                sb.Append("                <a href=\""+bannerNewsListA[0].link+"\" target=\"_blank\" class=\"info\">Ver más</a>");
+                sb.Append("            </div>");
+                sb.Append("        </li>");
+                sb.Append("    </ul>");
+                sb.Append("</div>");                
+            }
+            
+            return sb.ToString();
+        }
+
+        public string buildNewsSectionB()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Clear();
+            if (bannerNewsListB.Count() > 0)
+            {
+                sb.Append("<div class=\"view view-first\">");
+                sb.Append("    <div class=\"textosNoticias\">"+bannerNewsListB[0].text+"</div>");
+                sb.Append("    <img src=\""+bannerNewsListB[0].imgMainUrl+"\" />");
+                sb.Append("    <div class=\"mask\">");
+                sb.Append("        <a href=\"#modalPromo"+bannerNewsListB[0].id+"\" class=\"info\">Ver más</a>");
+                sb.Append("      </div>");
+                sb.Append("</div>");
+            }
+            return sb.ToString();
+        }
 
         public string buildTakeOver()
         {
-            string response = "";
+            
             StringBuilder sb = new StringBuilder();
             sb.Clear();
             int i = 1;
@@ -62,9 +102,8 @@ namespace AdminContenidoSC.Services
                 }
                 sb.Append("<div class=\"takeOver_close closeM\">x</div>");
                 sb.Append("</div>");
-                response = sb.ToString();
             }
-            return response;
+            return sb.ToString();
         }
 
         public string buildModals()
@@ -121,7 +160,7 @@ namespace AdminContenidoSC.Services
 
         public string buildSliderSection()
         {
-            string response = "";
+
             StringBuilder sb = new StringBuilder();
             sb.Clear();
             sb.Append("<ul class=\"bxslider1\">");
@@ -146,14 +185,12 @@ namespace AdminContenidoSC.Services
             }
             sb.Append("</ul>");
 
-            response = sb.ToString();
-
-            return response;
+            return sb.ToString();
         }
 
         private string buildModal(string id, string urlImage)
         {
-            string modalResponse = "";
+
             StringBuilder modalSb = new StringBuilder();
 
             modalSb.Clear();
@@ -168,8 +205,7 @@ namespace AdminContenidoSC.Services
             modalSb.Append("    </div>");
             modalSb.Append("</div>");
 
-            modalResponse = modalSb.ToString();
-            return modalResponse;
+            return modalSb.ToString();
         }
 
         private void clearBannerList()

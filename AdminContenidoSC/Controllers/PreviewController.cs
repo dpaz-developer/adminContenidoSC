@@ -15,6 +15,8 @@ namespace AdminContenidoSC.Controllers
             ViewBag.contenido = previewService.buildHome();
             ViewBag.modals = previewService.buildModals();
             ViewBag.takeOver = previewService.buildTakeOver();
+            ViewBag.newsA = previewService.buildNewsSectionA();
+            ViewBag.newsB = previewService.buildNewsSectionB();
             return View();
         }
     }

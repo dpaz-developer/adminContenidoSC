@@ -237,6 +237,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="uploads\images\A-Slider\" />
     <Folder Include="uploads\images\B-Banner\" />
+    <Folder Include="uploads\images\C-Noticias-A\" />
+    <Folder Include="uploads\images\C-Noticias-B\" />
+    <Folder Include="uploads\images\C-Noticias-C\" />
     <Folder Include="uploads\images\C-Noticias\" />
     <Folder Include="uploads\images\D-Takeover\" />
     <Folder Include="Views\Banner\" />
