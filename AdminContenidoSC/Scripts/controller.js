@@ -25,10 +25,12 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
     $scope.showDashNewBanner        = false;
     $scope.showDashUpdBanner        = false;
     $scope.showDashPreviewBanner    = false;
+    $scope.showDashSelectSection    = false;
+
+    $scope.showDashMonitor = false;
+    $scope.showDashCCManual = false;
     
     $scope.bannersResult = [];
-
-
 
     $scope.init = function(){
 
@@ -37,9 +39,11 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
         $scope.classMenuInicio = 'active';
         $scope.isCreateBanner = false;
         $scope.isUpdateBanner = false;
+        $scope.showDashSelectSection = false;
+        $scope.showDashMonitor = false;
+        $scope.showDashCCManual = false;
 
         $scope.urlImageMain = "Sin procesar.. Iniciado.....";
-        //$scope.showSection;
 
     };
 
@@ -160,6 +164,24 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
         });
     };
 
+    $scope.selectSection = function (sectionId) {
+        $scope.bnnrSection = sectionId;
+    };
+
+    function resetVariablesBanner() {
+        $scope.bnnrName = "";
+        $scope.urlPic[0] = null;
+        $scope.urlPic[1] = null;
+        $scope.urlPic[2] = null;
+        $scope.bnnrMode = "";
+        $scope.bnnrLink = "";
+        $scope.bnnrBackgroudColor = "";
+        $scope.bnnrText = "";
+        $scope.bnnrStatus = "";
+        $scope.bnnrDateIni = "";
+        $scope.bnnrDateEnd = "";
+    };
+
     $scope.createBanner = function () {
         
         $scope.isCreateBanner = true;
@@ -167,9 +189,8 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
         console.log("la fecha de inicion es" + $scope.bnnrDateIni);
         console.log("la fecha de fin es" + $scope.bnnrDateEnd);
         $scope.bannnerResponseData = "Entramos";
-        alert("Hola desde la aplicacion" + $scope.bnnrDateIni + "..---.." + $scope.bnnrDateEnd);
-        //TODO = falta agregar el atributo del nombre al banner 
-
+        console.log("Hola desde la aplicacion" + $scope.bnnrDateIni + "..---.." + $scope.bnnrDateEnd);        
+        
         var params = {
             seccionId: $scope.bnnrSection,
             name: $scope.bnnrName,
@@ -192,15 +213,31 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
             console.log("La data es correcta y es" + data);
             $scope.bannnerResponseData = data;
             $scope.isCreateBanner = true;
+            $scope.badCreateBanner = false;
+            $scope.showDashNewBanner = false;
         }, function (error) {
             console.log("ocurrio un error" + error);
             $scope.bannnerResponseData = "ocurrio un error" + error;
-            $scope.isCreateBanner = true;
+            $scope.badCreateBanner = true;
+            $scope.isCreateBanner = false;
+            $scope.showDashNewBanner = false;
         });
 
     };
 
     $scope.srchBnnr = function () {
+        console.log("Entramos a la busqueda general");
+        fnSearchBannr();
+    };
+
+    $scope.srchBnnrId = function (bnnrId) {
+        console.log("Entramos a la funcion con id = "+bnnrId);
+        $scope.searchBannerId = bnnrId;
+        fnSearchBannr();
+        console.log("YA no hizo nada despues de la funcion");
+    };
+
+   function fnSearchBannr(){
         var bannerId;
         var status;
         var section;
@@ -267,6 +304,12 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
     };
     /**********************************/
 
+    /************************** funciones para el preview **************************************/
+    $scope.showPreview = function () {
+        window.open("/Preview/Index", '_blank');
+    };
+    /*******************************************************************************************/
+
 
 
     /************ FUNCION PARA EL SHOW DE LAS SECCIONES **********************/
@@ -285,10 +328,19 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = 'active';
                 $scope.classMenuUsuarios = '';
                 $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
 
                 break;
             case "User":
@@ -304,10 +356,20 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = 'active';
                 $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
+
                 break;
             case "newUser":
                 $scope.showDashHome = false;
@@ -322,10 +384,20 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = 'active';
                 $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
+
                 break;
             case "searchUser":
                 $scope.showDashHome = false;
@@ -340,10 +412,19 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = 'active';
                 $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
 
                 break;
             case "updUser":
@@ -359,10 +440,19 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = 'active';
                 $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
 
                 break;
             case "Banner":
@@ -378,13 +468,23 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = '';
                 $scope.classMenuBanners = 'active';
 
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
+
                 break;
             case "newBanner":
+                resetVariablesBanner();
                 $scope.showDashHome = false;
 
                 $scope.showDashUser = false;
@@ -397,10 +497,19 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = '';
                 $scope.classMenuBanners = 'active';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
 
                 break;
             case "updBanner":
@@ -416,10 +525,19 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = true;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = '';
                 $scope.classMenuBanners = 'active';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
 
                 break;
             case "searchBanner":
@@ -435,10 +553,19 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = true;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = '';
                 $scope.classMenuBanners = 'active';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
 
                 break;
             case "previewBanner":
@@ -454,11 +581,131 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = true;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = '';
                 $scope.classMenuUsuarios = '';
                 $scope.classMenuBanners = 'active';
 
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
+
+                break;
+            case "selectSectionBanner":
+                $scope.showDashHome = false;
+
+                $scope.showDashUser = false;
+                $scope.showDashNewUser = false;
+                $scope.showDashUpdUser = false;
+                $scope.showDashSearchUser = false;
+
+                $scope.showDashBanner = true;
+                $scope.showDashNewBanner = false;
+                $scope.showDashUpdBanner = false;
+                $scope.showDashSearchBanner = false;
+                $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = true;
+
+                $scope.classMenuInicio = '';
+                $scope.classMenuUsuarios = '';
+                $scope.classMenuBanners = 'active';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
+
+                break;
+            case "detailBanner":
+                $scope.showDashHome = false;
+
+                $scope.showDashUser = false;
+                $scope.showDashNewUser = false;
+                $scope.showDashUpdUser = false;
+                $scope.showDashSearchUser = false;
+
+                $scope.showDashBanner = true;
+                $scope.showDashNewBanner = false;
+                $scope.showDashUpdBanner = false;
+                $scope.showDashSearchBanner = false;
+                $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
+
+                $scope.classMenuInicio = '';
+                $scope.classMenuUsuarios = '';
+                $scope.classMenuBanners = 'active';
+
+                $scope.showDashBannerDetail = true;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
+
+                break;
+            case "Monitor":
+                $scope.showDashHome = false;
+
+                $scope.showDashUser = false;
+                $scope.showDashNewUser = false;
+                $scope.showDashUpdUser = false;
+                $scope.showDashSearchUser = false;
+
+                $scope.showDashBanner = false;
+                $scope.showDashNewBanner = false;
+                $scope.showDashUpdBanner = false;
+                $scope.showDashSearchBanner = false;
+                $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
+
+                $scope.classMenuInicio = '';
+                $scope.classMenuUsuarios = '';
+                $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = true;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
+
+                break;
+            case "CCManual":
+                $scope.showDashHome = false;
+
+                $scope.showDashUser = false;
+                $scope.showDashNewUser = false;
+                $scope.showDashUpdUser = false;
+                $scope.showDashSearchUser = false;
+
+                $scope.showDashBanner = false;
+                $scope.showDashNewBanner = false;
+                $scope.showDashUpdBanner = false;
+                $scope.showDashSearchBanner = false;
+                $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
+
+                $scope.classMenuInicio = '';
+                $scope.classMenuUsuarios = '';
+                $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = true;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
                 break;
             default:
                 $scope.showDashHome = true;
@@ -473,15 +720,21 @@ function UserController($scope, $http, $q, $upload, Users, Login, Banners, Broad
                 $scope.showDashUpdBanner = false;
                 $scope.showDashSearchBanner = false;
                 $scope.showDashPreviewBanner = false;
+                $scope.showDashSelectSection = false;
 
                 $scope.classMenuInicio = 'active';
                 $scope.classMenuUsuarios = '';
                 $scope.classMenuBanners = '';
+
+                $scope.showDashBannerDetail = false;
+
+                $scope.showDashMonitor = false;
+                $scope.showDashCCManual = false;
+
+                $scope.isCreateBanner = false;
+                $scope.badCreateBanner = false;
         }
-
     }
-
-
 }
 /*
 function PasswordController ($scope, $http, $upload, Locations, Bands, Categories,States){

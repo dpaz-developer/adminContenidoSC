@@ -10,13 +10,7 @@ namespace AdminContenidoSC.Services
 {
     public class PreviewService
     {
-        /* -- Algoritmo de seguimiento 
-            1.- Creamos las listas de banners por seccion 
-            2.- creamos metodo que alimenta las listas de cada seccion desde la BD
-            3.- Creamos un metodo de construccion por seccion 
-            4.- Regresamos los resultados
-
-        */
+       
         private DataBase conexion = new DataBase("SQL");
         private List<Banner> bannerSliderList = new List<Banner>();
         private List<Banner> bannerNewsListA = new List<Banner>();
@@ -37,9 +31,7 @@ namespace AdminContenidoSC.Services
         {
             clearBannerList();
             getBannerActive();
-            // stringbuilder  sb.Append()
-            string response = buildSliderSection();
-            return response;
+            return buildSliderSection();
         }
 
         public string buildBannerSection()

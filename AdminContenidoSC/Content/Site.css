@@ -27,8 +27,13 @@ textarea {
     margin-left:100px;
     margin-top: -12px;
 }
+.array_pictures{
 
-.array_pictures input{
+   margin-left:100px;
+
+}
+
+.array_pictures input div{
 
     display: inline-block;
 
@@ -91,7 +96,7 @@ textarea {
     background-color:#EEE;
    /* background-image:url('../Images/pic_upload.png');*/
     border:1px solid #EEE;
-    color:#CCC;
+    color:#000;
     border-bottom-left-radius:2px;
     border-bottom-right-radius:2px;
     border-top-left-radius:2px;
@@ -138,3 +143,112 @@ textarea {
 input[type='file'] {
     color: transparent;
 }
+
+
+/******************** INI-Estilos para la seleccion de seccion *************************************************/
+.mainSelectSection{
+    width:100%;
+    border:0px solid red;
+    background-color:azure;
+    padding:10px;
+}
+
+.mainSelectSection .takeoverSection{
+    margin-right:30px;
+    width:200px;
+    height:30px;
+    background-color:#F1F1F1;
+    border:1px solid #808080;
+    cursor: pointer;
+    margin-top:3px;
+    position:relative;
+    text-align: center;
+}
+.takeoverSection:hover{
+    background-color:#808080;
+    color:#FFF;
+    font-weight:bold;
+}
+
+.mainSelectSection .sliderSection{
+    margin-top:10px;
+    width:100%;
+    height:60px;
+    background-color:#F1F1F1;
+    border:1px solid #808080;
+    cursor: pointer;
+    text-align: center;
+}
+
+.sliderSection:hover{
+    background-color:#808080;
+    color:#FFF;
+    font-weight:bold;
+}
+
+.mainSelectSection .noticiasSection div{
+    width:30%;
+    height:100px;
+    background-color:#F1F1F1;
+    border:1px solid #808080;
+    cursor: pointer;
+    margin-top:10px;
+    margin-left:20px;
+    text-align: center;
+    display:inline-block;
+}
+.noticiasSection div:hover{
+    background-color:#808080;
+    color:#FFF;
+    font-weight:bold;
+}
+
+.mainSelectSection .bannerSection{
+    margin-top:10px;
+    width:100%;
+    height:100px;
+    background-color:#F1F1F1;
+    border:1px solid #808080;
+    cursor: pointer;
+    text-align: center;
+}
+
+.bannerSection:hover{
+    background-color:#808080;
+    color:#FFF;
+    font-weight:bold;
+}
+
+
+/******************** FIN-Estilos para la seleccion de seccion *************************************************/
+/******************** FIN-Estilos para el detalle del banner *************************************************/
+
+.detailBannerContent .detailBannerCol{
+    display:inline-block;
+}
+.detailBannerCol{
+    vertical-align:top;
+    padding:10px;
+    margin-left:15px;
+}
+.detailBannerCol span{
+    font-weight:bold;
+    color:#000;
+}
+.detailBannerImage{
+    width:400px;
+    height:400px;
+    margin:5px;
+    background-color:#808080;
+}
+.detailBannerMain{
+    margin:2px;
+}
+.detailBannerActions{
+    margin-top:20px;
+}
+.detailBannerTitle{
+    margin-left:70px;
+}
+
+/******************** FIN-Estilos para la detalle del banner *************************************************/

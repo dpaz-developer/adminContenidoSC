@@ -6,45 +6,44 @@
 
 <!-- Home del dasboard-->
 <div ng-show="showDashHome">
-    <h1>@HttpContext.Current.Session["name"]</h1>
+    <h3>Panel de control  @HttpContext.Current.Session["name"]</h3>
     <div class="panel panel-default">
         <div class="panel-body">
-            <h2>Aquí manejamos las opciones del home</h2>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div>
-                <button type="submit"  class="btn btn-success">Preview activo home</button>
-                <button type="submit" class="btn btn-success">Preview activo promociones</button>
-                <button type="submit"  class="btn btn-success">Status de procesos</button>
-
-                <button type="submit" class="btn btn-warning">activar en sitio</button>
-                <button type="submit" class="btn btn-warning">regresar a la version anterior</button>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div>
-                <h2>Aqui va el preview del home</h2>
-                <div>
-                    slider
-                </div>
-                <div>
-                    noticias
-                </div>
-                <div>
-                    banners
-                </div>
-            </div>
+                <button type="submit" ng-click="showSection('Monitor');"  class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <br /> Monitoreo
+                </button>
+                <button type="submit" ng-click="showSection('CCManual');" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <br /> Control manual
+                </button>
+                <button type="submit" ng-click="showSection('Banner');" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> <br />  Contenidos
+                </button>
+                <button type="submit" ng-click="showSection('User');" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <br />  Usuarios
+                </button>
+                <button type="submit" ng-click="showPreview();"  class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <br /> Preview
+                </button>
         </div>
     </div>
 </div>
 <!-- Termina el div del home del dashboard-->
 
+<!-- Inicia seccion de monitoreo-->
+<div ng-show="showDashMonitor">
+    <h3>Monitoreo</h3>
+    <div class="panel panel-default">
+    </div>
+</div>
+<!-- Termina seccion de monitoreo -->
 
-
+<!-- Inicia seccion de control manual -->
+<div ng-show="showDashCCManual">
+    <h3>Control manual</h3>
+    <div class="panel panel-default">
+    </div>
+</div>
+<!-- Termina seccion de control manual-->
 
 <!-- Inicia Seccion del registro y edicion de usuarios-->
 <div ng-show="showDashUser">
@@ -246,7 +245,7 @@
 
 <div ng-show="showDashBanner">
     <!-- Seccion de Banner -->
-    <h1 class="page-header">Banner</h1>
+    <h2 class="page-header">Contenidos</h2>
     <!-- Inicia Sección de busqueda de banners-->
     <div>
         <div class="panel panel-default">
@@ -294,7 +293,7 @@
                             <button type="submit" class="btn btn-success" ng-click="showSection('searchBanner'); srchBnnr();" >Buscar</button>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" ng-click="showSection('newBanner');" >Nuevo</button>
+                            <button type="submit" class="btn btn-primary" ng-click="showSection('selectSectionBanner');" >Nuevo</button>
                         </div>
                     
                     </div>    
@@ -302,6 +301,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Elige la seccion de contenido que quieres crear-->
+    <div ng-show="showDashSelectSection">
+        <h3>Elige la seccion donde quieres cargar un nuevo contenido</h3>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="mainSelectSection">
+                    <div class="takeoverSection" ng-click="selectSection('D-Takeover'); showSection('newBanner');">D-Takeover</div>
+                    <div class="sliderSection" ng-click="selectSection('A-Slider'); showSection('newBanner');">A-Slider</div>
+                    <div class="noticiasSection">
+                        <div ng-click="selectSection('C-Noticias-A'); showSection('newBanner');">C-Noticas-A</div>
+                        <div ng-click="selectSection('C-Noticias-B'); showSection('newBanner');">C-Noticias-B</div>
+                        <div ng-click="selectSection('C-Noticias-C'); showSection('newBanner');">C-Noticias-C</div>
+                    </div>
+                    <div class="bannerSection" ng-click="selectSection('B-Banner'); showSection('newBanner');">B-Banner</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin seccion crear contenido-->
 
     <div ng-show="showDashSearchBanner">
         <div class="panel panel-default">
@@ -353,16 +372,16 @@
                                 </td>
                                 <td>{{bnner.status}}</td>
                                 <td>
-                                    ini:{{bnner.startDateActivation  | date: "yyyy-MM-dd"}}<br />
-                                    fin:{{bnner.endDateActivation | date: "yyyy-MM-dd"}}<br />
-                                    modificado:{{bnner.updateDate | date: "yyyy-MM-dd"}}<br />
-                                    carga:{{bnner.registrationDate | date: "yyyy-MM-dd"}}
+                                    ini:{{bnner.startDateActivation  | date: "dd-MM-yyyy"}}<br />
+                                    fin:{{bnner.endDateActivation | date: "dd-MM-yyyy"}}<br />
+                                    modificado:{{bnner.updateDate | date: "dd-MM-yyyy"}}<br />
+                                    carga:{{bnner.registrationDate | date: "dd-MM-yyyy"}}
                                 </td>
                                 <td>
                                     <a href="">Activar</a><br />
                                     <a href="">Poner pendiente</a><br />
                                     <a href="">Cancelar</a><br />
-                                    <a href="#" ng-click="showSection('previewBanner');">Preview</a><br />
+                                    <a href="#" ng-click="showSection('detailBanner'); srchBnnrId(bnner.id);">Ver</a><br />
                                     
                                 </td>
                             </tr>
@@ -397,25 +416,10 @@
 
 
     <!-- Seccion para crear una campaña de banner-->
-    <form name="newBanner" class="form-horizontal" ng-show="showDashNewBanner" ng-submit="createBanner();srchBnnr();showSection('searchBanner'); ">
+    <form name="newBanner" class="form-horizontal" ng-show="showDashNewBanner" ng-submit="createBanner();">
+        <h4>Nuevo contenido para la sección <b>{{bnnrSection}}</b></h4>
         <div class="panel panel-default">
             <div class="panel-body">
-
-                <div class="form-group input-group-lg">
-                    <label class="col-sm-2 control-label">Sección</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" ng-model="bnnrSection" required>
-                            <option value="">Selecciona la sección</option>
-                            <option value="A-Slider">A-Slider</option>
-                            <option value="B-Banner">B-Banner</option>
-                            <option value="C-Noticias-A">C-Noticias-A</option>
-                            <option value="C-Noticias-B">C-Noticias-B</option>
-                            <option value="C-Noticias-C">C-Noticias-C</option>
-                            <option value="D-Takeover">D-Takeover</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="form-group input-group-lg">
                     <label class="col-sm-2 control-label">Nombre:</label>
                     <div class="col-sm-10">
@@ -436,53 +440,47 @@
                 </div>
 
                 <div class="form-group input-group-lg">
-                    <label class="col-sm-2 control-label">Url de imagen principal</label>
-                    <div class="col-sm-10">
+                    
+                    <div class="array_pictures">
                         <div class="fileUpload btn_foto">
+                            <label>Principal</label>
                             <input id="picture_0" class="upload" type="file" ng-file-select="onFileSelect($files,0)" multiple accept="image/*" data-multiple="true">
                             <img ng-show="urlPic[0] != null" ng-src="{{urlPic[0]}}" class="img-rounded">
                         </div>
-                    </div>
-                </div>
 
-                <div class="form-group input-group-lg">
-                    <label class="col-sm-2 control-label">Url de imagen de boton</label>
-                    <div class="col-sm-10">
-                        <div class="fileUpload btn_foto">
+                        <div ng-show="bnnrSection == 'A-Slider'" class="fileUpload btn_foto">
+                            <label>Boton</label>
                             <input id="picture_0" class="upload" type="file" ng-file-select="onFileSelect($files,1)" multiple accept="image/*" data-multiple="true">
                             <img ng-show="urlPic[1] != null" ng-src="{{urlPic[1]}}" class="img-rounded">
                         </div>
-                    </div>
-                </div>
 
-                <div class="form-group input-group-lg">
-                    <label class="col-sm-2 control-label">Url de imagen de modal</label>
-                    <div class="col-sm-10">
-                        <div class="fileUpload btn_foto">
+                        <div ng-show="(bnnrSection != 'D-Takeover') && (bnnrSection != 'C-Noticias-A')" class="fileUpload btn_foto">
+                            <label>Modal</label>
                             <input id="picture_0" class="upload" type="file" ng-file-select="onFileSelect($files,2)" multiple accept="image/*" data-multiple="true">
                             <img ng-show="urlPic[2] != null" ng-src="{{urlPic[2]}}" class="img-rounded">
                         </div>
+
                     </div>
                 </div>
 
-                <div class="form-group input-group-lg">
+                <div ng-show="(bnnrSection == 'C-Noticias-A') || (bnnrSection == 'B-Banner')" class="form-group input-group-lg">
                     <label class="col-sm-2 control-label">Link</label>
                     <div class="col-sm-10">
-                        <input type="text" ng-model="bnnrLink" class="form-control" required="" />
+                        <input type="text" ng-model="bnnrLink" class="form-control"  />
                     </div>
                 </div>
 
-                <div class="form-group input-group-lg">
+                <div ng-show="bnnrSection == 'A-Slider'" class="form-group input-group-lg">
                     <label class="col-sm-2 control-label">Background Color</label>
                     <div class="col-sm-10">
-                        <input type="text" ng-model="bnnrBackgroudColor" class="form-control" required="" />
+                        <input type="text" ng-model="bnnrBackgroudColor" class="form-control"  />
                     </div>
                 </div>
 
-                <div class="form-group input-group-lg">
+                <div ng-show="(bnnrSection == 'C-Noticias-A') || (bnnrSection == 'C-Noticias-B')" class="form-group input-group-lg">
                     <label class="col-sm-2 control-label">Texto</label>
                     <div class="col-sm-10">
-                        <input type="text" ng-model="bnnrText" class="form-control" required="" />
+                        <input type="text" ng-model="bnnrText" class="form-control" />
                     </div>
                 </div>
 
@@ -512,26 +510,70 @@
                         </select>
                     </div>
                 </div>
-
-
                 <div class="form-group input-group-lg">
                     <label class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
                         <input type="submit" class="btn btn-success btn-lg" value="Cargar" />
                     </div>
                 </div>
-
-                <div id="notificationsBanner">
-                    <div ng-show="isCreateBanner">
-                        {{bannnerResponseData}}
-                    </div>
-                </div>
             </div>
         </div>
     </form>
 
+    <!-- notificaciones de creacion de banners -->
+    <div id="notificationsBanner">
+        <div ng-show="isCreateBanner">
+            <div class="alert alert-success" role="alert">Ok!! creado correctamente</div>
+            <input type="submit" ng-click="showSection('detailBanner'); srchBnnrId(bannnerResponseData.id);" class="btn btn-success btn-lg" value="Ver banner creado" />
+        </div>
+        <div ng-show="badCreateBanner">
+            <div class="alert alert-danger" role="alert">Ups!! algo salio mal..</div>
+        </div>
+    </div>
+    <!-- termina notificaciones de creacion de banner-->
+
+    <!-- Detalle de banner-->
+    <div ng-show="showDashBannerDetail">
+        <h3>Detalle de banner:</h3>
+        <div class="panel panel-default"  ng-repeat="bannerDetail in bannersResult">
+            <div class="panel-body">
+                <div class="detailBannerMain">
+                    <div class="detailBannerTitle"><h3>#{{bannerDetail.id}} {{bannerDetail.seccionId}} {{bannerDetail.name}}</h3></div>
+                    <div class="detailBannerContent">
+                        <div class="detailBannerCol">
+                                <img class="detailBannerImage" src="{{bannerDetail.imgMainUrl}}" />
+                        </div>
+                        <div class="detailBannerCol">
+                            <div>Inicia:<span>{{bannerDetail.startDateActivation | date: "dd-MM-yyyy"}}</span></div>
+                            <div>Termina:<span>{{bannerDetail.endDateActivation | date: "dd-MM-yyyy"}}</span></div>
+                            <div>Texto:<span>{{bannerDetail.texto}}</span></div>
+                            <div>link:<span><a href="{{bannerDetail.link}}">{{bannerDetail.link}}</a></span></div>
+                            <div>Fondo:<span style="width:10px; height:5px; background-color:{{bannerDetail.backgroundColor}}; color:{{bannerDetail.backgroundColor}};">xxx</span></div>
+                            <div>Status:<span>{{bannerDetail.status}}</span></div>
+                            <div>Creado:<span>{{bannerDetail.registrationDate}}</span></div>
+                            <div>Modificado:<span>{{bannerDetail.updateDate}}</span></div>
+                            <div>Cargó:<span>{{bannerDetail.registrationUserId}}</span></div>
+                            <div>Modificó:<span>{{bannerDetail.updateUserId}}</span></div>
+
+                            <div class="detailBannerActions">
+                                <input type="submit" class="detailBannerCol btn btn-default" value="Modificar" />
+                                <input type="submit" class="detailBannerCol btn btn-success" value="Activar" />
+                                <input type="submit" class="detailBannerCol btn btn-danger" value="Cancelar" />
+                                <input type="submit" class="detailBannerCol btn btn-danger" value="Cerrar" />
+                                <input type="submit" class="detailBannerCol btn btn-warning" value="Pendiente" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Termina detalle de banner-->
         
-        <form name="newBanner" class="form-horizontal" ng-show="showDashUpdBanner" ng-submit="updateBanner('321');"><!-- edicion de banner-->
+        
+    <!-- edicion de banner-->
+    <form name="newBanner" class="form-horizontal" ng-show="showDashUpdBanner" ng-submit="updateBanner('321');">
             <div class="panel panel-default">
                 <div class="panel-body">
 
